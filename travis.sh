@@ -27,5 +27,5 @@ if [ "$TASK" = "upload" ]; then
 	echo "UPLOAD"
 	
 	
-	curl --ftp-create-dirs --retry 6 -T -u ${FTP_USER}:${FTP_PASSWORD} ftp://mail.afterlogic.com/
+	curl --ftp-create-dirs --retry 6 -T archive.zip -u ${FTP_USER}:${FTP_PASSWORD} ftp://afterlogic.com/
 fi
