@@ -27,7 +27,7 @@ if [ "$TASK" = "upload" ]; then
 	echo "UPLOAD BY IP"
 	
 	
-	curl ftp://64.150.188.238 --ftp-port - -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
+	curl ftp://64.150.188.238 --ftp-port -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
 	
 	retVal=$?
 	if [ $retVal -ne 0 ]; then
