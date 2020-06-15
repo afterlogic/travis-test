@@ -23,6 +23,3 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 echo TASK  = "$TASK"
 
-if [ "$TASK" = "upload" ]; then
-	
-fi
