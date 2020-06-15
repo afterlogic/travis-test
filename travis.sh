@@ -24,29 +24,30 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 echo TASK  = "$TASK"
 
 if [ "$TASK" = "upload" ]; then
-	echo "UPLOAD"
+	echo "UPLOAD BY IP"
 	
 	
-	curl ftp://afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
+	curl ftp://64.150.188.238 -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
 	
 	retVal=$?
 	if [ $retVal -ne 0 ]; then
-		curl ftp://afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
+	echo "UPLOAD BY DOMAIN"
+		curl ftp://mail.afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
 	fi
 	
 	retVal=$?
 	if [ $retVal -ne 0 ]; then
-		curl ftp://afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
+		curl ftp://mail.afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
 	fi
 	
 	retVal=$?
 	if [ $retVal -ne 0 ]; then
-		curl ftp://afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
+		curl ftp://mail.afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
 	fi
 	
 	retVal=$?
 	if [ $retVal -ne 0 ]; then
-		curl ftp://afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
+		curl ftp://mail.afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
 	fi
 	
 fi
