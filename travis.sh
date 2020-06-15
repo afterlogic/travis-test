@@ -24,5 +24,5 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 echo TASK  = "$TASK"
 
 if [ "$TASK" = "upload" ]; then
-	curl  -u ${FTP_USER}:${FTP_PASSWORD} ftp://mail.afterlogic.com
+	
 fi
