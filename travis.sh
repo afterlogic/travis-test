@@ -27,5 +27,5 @@ if [ "$TASK" = "upload" ]; then
 	echo "UPLOAD"
 	
 	
-	curl -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD} ftp://afterlogic.com/
+	curl ftp://afterlogic.com/ -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
 fi
