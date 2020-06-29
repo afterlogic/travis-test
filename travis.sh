@@ -24,30 +24,36 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 echo TASK  = "$TASK"
 
 if [ "$TASK" = "upload" ]; then
-	echo "UPLOAD BY IP"
+	echo "UPLOAD VIA SFTP"
 	
+	echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
 	
-	curl ftp://64.150.188.238 --ftp-port -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
+	curl --ftp-create-dirs
+       -T archive.zip
+       --key /tmp/sftp_rsa
+       sftp://${SFTP_USER}@afterlogic.com/opt/afterlogic/ftp/
 	
-	retVal=$?
-	if [ $retVal -ne 0 ]; then
-	echo "UPLOAD BY DOMAIN"
-		curl ftp://mail.afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
-	fi
+	# curl ftp://64.150.188.238 --ftp-port -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
 	
-	retVal=$?
-	if [ $retVal -ne 0 ]; then
-		curl ftp://mail.afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
-	fi
+	# retVal=$?
+	# if [ $retVal -ne 0 ]; then
+	# echo "UPLOAD BY DOMAIN"
+		# curl ftp://mail.afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
+	# fi
 	
-	retVal=$?
-	if [ $retVal -ne 0 ]; then
-		curl ftp://mail.afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
-	fi
+	# retVal=$?
+	# if [ $retVal -ne 0 ]; then
+		# curl ftp://mail.afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
+	# fi
 	
-	retVal=$?
-	if [ $retVal -ne 0 ]; then
-		curl ftp://mail.afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
-	fi
+	# retVal=$?
+	# if [ $retVal -ne 0 ]; then
+		# curl ftp://mail.afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
+	# fi
+	
+	# retVal=$?
+	# if [ $retVal -ne 0 ]; then
+		# curl ftp://mail.afterlogic.com -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
+	# fi
 	
 fi
