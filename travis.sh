@@ -27,6 +27,7 @@ if [ "$TASK" = "upload" ]; then
 	echo "UPLOAD VIA SFTP"
 	
 	echo "${SFTP_KEY}"
+	echo "${SFTP_KEY}" | base64 --decode 
 	echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
 	
 	curl --ftp-create-dirs -T archive.zip --key /tmp/sftp_rsa sftp://${SFTP_USER}@afterlogic.com/opt/afterlogic/ftp/
