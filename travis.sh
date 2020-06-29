@@ -28,10 +28,7 @@ if [ "$TASK" = "upload" ]; then
 	
 	echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
 	
-	curl --ftp-create-dirs
-       -T archive.zip
-       --key /tmp/sftp_rsa
-       sftp://${SFTP_USER}@afterlogic.com/opt/afterlogic/ftp/
+	curl --ftp-create-dirs -T archive.zip --key /tmp/sftp_rsa sftp://${SFTP_USER}@afterlogic.com/opt/afterlogic/ftp/
 	
 	# curl ftp://64.150.188.238 --ftp-port -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
 	
