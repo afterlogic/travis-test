@@ -40,7 +40,7 @@ if [ "$TASK" = "upload" ]; then
 	
 	# curl -k --ftp-create-dirs -T archive.zip --key /tmp/sftp_rsa sftp://${SFTP_USER}:@afterlogic.com/pub/
 	
-	sftp -i /tmp/sftp_rsa ${SFTP_USER}@afterlogic.com
+	sftp -o "StrictHostKeyChecking no" -i /tmp/sftp_rsa ${SFTP_USER}@afterlogic.com
 	cd pub
 	put archive.zip
 	exit
