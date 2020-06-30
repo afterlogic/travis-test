@@ -23,14 +23,22 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 echo TASK  = "$TASK"
 
+if [ "$TASK" = "upload1" ]; then
+	echo "UPLOAD VIA SFTP"
+	
+	# echo "${SFTP_KEY}" | >/tmp/sftp_rsa
+	# echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
+	
+	curl -k --ftp-create-dirs -T archive.zip --key key.pem sftp://${SFTP_USER}@afterlogic.com/pub/
+fi
+
 if [ "$TASK" = "upload" ]; then
 	echo "UPLOAD VIA SFTP"
 	
-	echo "${SFTP_KEY}"
-	echo "${SFTP_KEY}" | base64 --decode 
-	echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
+	echo "${SFTP_KEY}" | >/tmp/sftp_rsa
+	# echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
 	
-	curl --ftp-create-dirs -T archive.zip --key /tmp/sftp_rsa sftp://${SFTP_USER}@afterlogic.com/opt/afterlogic/ftp/
+	curl -k --ftp-create-dirs -T archive.zip --key /tmp/sftp_rsa sftp://${SFTP_USER}:@afterlogic.com/pub/
 	
 	# curl ftp://64.150.188.238 --ftp-port -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
 	
