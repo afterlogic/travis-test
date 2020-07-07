@@ -43,6 +43,8 @@ if [ "$TASK" = "upload" ]; then
 	echo "${SFTP_KEY2}" | >/tmp/sftp_rsa
 	chmod 600 /tmp/sftp_rsa
 	
+	sshpass -p "" ssh-add /tmp/sftp_rsa
+	
 	echo "================"
 	sftp -o "StrictHostKeyChecking no" -i /tmp/sftp_rsa fuser@mail.afterlogic.com:/pub/ <<< $'put archive.zip'
 	
