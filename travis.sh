@@ -40,7 +40,7 @@ fi
 if [ "$TASK" = "upload" ]; then
 	echo "UPLOAD VIA SFTP"
 	
-	echo "${SFTP_KEY}" | >/tmp/sftp_rsa
+	echo "${SFTP_KEY2}" | >/tmp/sftp_rsa
 	chmod 600 /tmp/sftp_rsa
 	
 	echo "================"
