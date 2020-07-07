@@ -29,23 +29,30 @@ if [ "$TASK" = "upload1" ]; then
 	# echo "${SFTP_KEY}" | >/tmp/sftp_rsa
 	# echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
 	
-	curl -k --ftp-create-dirs -T archive.zip --key key.pem sftp://${SFTP_USER}@afterlogic.com/pub/
+	#curl -k --ftp-create-dirs -T archive.zip --key key.pem sftp://${SFTP_USER}@afterlogic.com/pub/
+	
+	sftp -o "StrictHostKeyChecking no" -i /d/domains/travis-test/SSH-pub-key.pem fuser@mail.afterlogic.com:/pub/ <<< $'put archive.zip'
+	#cd pub
+	#put archive.zip
+	exit
 fi
 
 if [ "$TASK" = "upload" ]; then
 	echo "UPLOAD VIA SFTP"
 	
 	echo "${SFTP_KEY}" | >/tmp/sftp_rsa
-	
-	echo "11111111111111111111"
 	chmod 600 /tmp/sftp_rsa
+	
+	echo "================"
+	sftp -o "StrictHostKeyChecking no" -i /tmp/sftp_rsa fuser@mail.afterlogic.com:/pub/ <<< $'put archive.zip'
+	
 	# echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
 	
 	# curl -k --ftp-create-dirs -T archive.zip --key /tmp/sftp_rsa sftp://${SFTP_USER}:@afterlogic.com/pub/
 	
-	sftp -o "StrictHostKeyChecking no" -i /tmp/sftp_rsa ${SFTP_USER}@afterlogic.com
-	cd pub
-	put archive.zip
+	# sftp -o "StrictHostKeyChecking no" -i /tmp/sftp_rsa ${SFTP_USER}@afterlogic.com
+	# cd pub
+	# put archive.zip
 	exit
 	
 	# curl ftp://64.150.188.238 --ftp-port -T aurora-corporate_8.3.21.rc3-build-a3.zip -u ${FTP_USER}:${FTP_PASSWORD}
