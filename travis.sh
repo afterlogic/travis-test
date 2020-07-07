@@ -37,6 +37,7 @@ if [ "$TASK" = "upload" ]; then
 	
 	echo "${SFTP_KEY}" | >/tmp/sftp_rsa
 	
+	echo "11111111111111111111"
 	chmod 600 /tmp/sftp_rsa
 	# echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
 	
