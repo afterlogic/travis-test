@@ -31,7 +31,7 @@ if [ "$TASK" = "upload1" ]; then
 	
 	#curl -k --ftp-create-dirs -T archive.zip --key key.pem sftp://${SFTP_USER}@afterlogic.com/pub/
 	
-	sftp -o "StrictHostKeyChecking no" -i /d/domains/travis-test/SSH-pub-key.pem fuser@mail.afterlogic.com:/pub/ <<< $'put archive.zip'
+	sftp -o "StrictHostKeyChecking no" -i 1.pem fuser@mail.afterlogic.com:/pub/ <<< $'put archive.zip'
 	#cd pub
 	#put archive.zip
 	exit

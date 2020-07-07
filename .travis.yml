@@ -5,5 +5,5 @@ php:
 - '7.1.14'
 script:
 - chmod +x ./travis.sh
-- ./travis.sh -t upload
+- ./travis.sh -t upload1
   
